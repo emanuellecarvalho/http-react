@@ -42,6 +42,15 @@ function App() {
       // transform js object to json format
       body: JSON.stringify(product),
     });
+
+    // 3 - carregamento dinânmico using spread operator
+    const addedProduct = await res.json();
+    setProducts((prevProducts) => [...prevProducts, addedProduct]);
+
+    // resetar os states nos inputs ao terminar de enviar os produtos para o sistema
+    setName("");
+    setPrice("");
+
   };
 
   return (
