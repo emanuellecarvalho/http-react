@@ -24,6 +24,11 @@
       "name": "Short",
       "price": "199.90",
       "id": 5
+    },
+    {
+      "name": "Sapato",
+      "price": "299.90",
+      "id": 6
     }
   ]
 }

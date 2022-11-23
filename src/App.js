@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+
   // 4 - custom hook
-import useFetch  from './hooks/useFetch';
+import { useFetch }  from './hooks/useFetch';
 
 const url = "http://localhost:3000/products";
 
@@ -9,7 +10,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   // 4 - custom hook
-  const { data: items } = useFetch(url);
+  const { data: items, httpConfig } = useFetch(url);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -27,7 +28,7 @@ function App() {
     fetchData();
   }, []); */
 
-  // 2 - add de produtos
+  // 2 - add produtos
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -37,23 +38,26 @@ function App() {
       price,
     };
 
-    console.log(product);
 
     // faz o POST
-    const res = await fetch(url, {
-      method: "POST", 
-      headers: {
-        "Content-Type": "application/json"
-      },
-      // transform js object to json format
-      body: JSON.stringify(product),
-    });
+    // const res = await fetch(url, {
+    //   method: "POST", 
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   // transform js object to json format
+    //   body: JSON.stringify(product),
+    // });
 
-    // 3 - carregamento dinânmico using spread operator
-    const addedProduct = await res.json();
-    setProducts((prevProducts) => [...prevProducts, addedProduct]);
+    // // 3 - carregamento dinânmico using spread operator
+    // const addedProduct = await res.json();
+    // setProducts((prevProducts) => [...prevProducts, addedProduct]);
 
     // resetar os states nos inputs ao terminar de enviar os produtos para o sistema
+
+    // 5 - refatorando post
+    httpConfig(product, "POST");
+    
     setName("");
     setPrice("");
 
