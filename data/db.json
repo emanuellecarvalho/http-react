@@ -39,6 +39,11 @@
       "name": "Chapéu",
       "price": "59.90",
       "id": 8
+    },
+    {
+      "name": "Vestido",
+      "price": "199.90",
+      "id": 9
     }
   ]
 }

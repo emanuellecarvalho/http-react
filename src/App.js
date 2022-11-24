@@ -72,7 +72,7 @@ function App() {
         {items && items.map((product) => (
           <li key={product.id}>{product.name} - R$: {product.price}</li>
         ))}
-      </ul>) }
+      </ul>)}
       <div className='add-product'>
         <form onSubmit={handleSubmit}>
           <label>
@@ -93,7 +93,12 @@ function App() {
               onChange={(e) => setPrice(e.target.value)}
             />
           </label>
+          {/* 7- state de loading no POST */}
+          {loading ? (
+          <input type="submit" disabled value="Aguarde"/>
+          ) : (
           <input type="submit" value="Criar"/>
+          )}
         </form>
       </div>
     </div>
