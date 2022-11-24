@@ -29,6 +29,16 @@
       "name": "Sapato",
       "price": "299.90",
       "id": 6
+    },
+    {
+      "name": "Tênis",
+      "price": "399.90",
+      "id": 7
+    },
+    {
+      "name": "Chapéu",
+      "price": "59.90",
+      "id": 8
     }
   ]
 }
