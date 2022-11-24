@@ -12,6 +12,9 @@ export const useFetch = (url) => {
   // 6 - loading
   const [loading, setLoading] = useState(false);
 
+  // 7 - tratando erro
+  const [error, setError] = useState(null);
+
   const httpConfig = (data, method) => {
     if(method === "POST") {
       setConfig({
@@ -30,11 +33,18 @@ export const useFetch = (url) => {
 
       // 6 - loading
       setLoading(true);
-      const res = await fetch(url);
+      try {
+        const res = await fetch(url);
 
-      const json = await res.json();
+        const json = await res.json();
+  
+        setData(json);
 
-      setData(json);
+      } catch (error) {
+        console.log(error.message);
+
+        setError("Erro ao carregar os dados. Tente novamente!")
+      }
       setLoading(false);
     }
     fetchData();
@@ -62,5 +72,5 @@ export const useFetch = (url) => {
   // sempre que houver uma alteração na config, esse useEffect é chamado
   }, [config, method, url])
 
-  return { data, httpConfig, loading };
+  return { data, httpConfig, loading, error };
 };
